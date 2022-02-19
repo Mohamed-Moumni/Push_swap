@@ -40,4 +40,11 @@ int pop(t_stack **s, int *value)
     return (0);
 }
 
+int    fill_stack(t_stack **s, char *arg)
+{
+    int value;
 
+    value = ft_atoi(arg);
+    push(s, value);
+    return (value);
+}
