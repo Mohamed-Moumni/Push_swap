@@ -1,5 +1,17 @@
 #include "push_swap.h"
 
+
+void    print_s(t_stack *stack)
+{
+    t_stack *tmp;
+    
+    tmp = stack;
+    while (tmp)
+    {
+        printf("%d\n",tmp->number);
+        tmp = tmp->next;
+    }
+}
 int main(int ac, char **av)
 {
     t_stack *stack;
@@ -22,7 +34,9 @@ int main(int ac, char **av)
                 }
             }
             i++;
-        } 
+        }
+        ft_sort_three(&stack);
+        print_s(stack);
     }
     return (0);
 }

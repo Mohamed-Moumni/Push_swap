@@ -8,7 +8,7 @@
 
 
 #define MAX_INT 2147483647
-#define MIN_INT 
+#define MIN_INT -2147483648
 #define MAX "2147483647"
 #define MIN "2147483648"
 
@@ -37,5 +37,6 @@ void	ft_error(void);
 int ft_strcmp(char *str1, char *str2);
 int    check_number(char *num);
 int is_integer(char *num);
+void ft_sort_three(t_stack **stack);
 
 #endif

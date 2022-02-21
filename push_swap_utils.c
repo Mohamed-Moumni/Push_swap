@@ -13,6 +13,7 @@ int	ft_atoi(char *number)
 	int			i;
 	int			sign;
 	int			result;
+	
 	i = 0;
 	result = 0;
 	sign = 1;
@@ -55,5 +56,26 @@ int	check_number(char *num)
 		ft_error();
 	if (is_integer(num))
 		ft_error();
+	return (0);
+}
+
+int	stack_is_sorted(t_stack *stack)
+{
+	t_stack *tmp_stack;
+	int		length;
+
+	length = 0;
+	tmp_stack = stack;
+	while (tmp_stack->next)
+	{
+		if (tmp_stack->next < tmp_stack)
+		{
+			return (1);
+		}
+		length++;
+		tmp_stack = tmp_stack->next;
+	}
+	if (length == 0 || length == 1)
+		return (1);
 	return (0);
 }
