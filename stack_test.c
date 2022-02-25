@@ -16,18 +16,20 @@ int is_empty(t_stack *s)
         return (0);
 }
 
-void push(t_stack **s, int value)
+void push(t_stack **s, int value, t_size **stack_size)
 {
     t_stack *new_node;
     new_node = (t_stack *)malloc(sizeof(t_stack));
     if (!new_node)
         return ;
     new_node->number = value;
+    new_node->lis = 0;
     new_node->next = *s;
     *s = new_node;
+    (*stack_size)->size += 1;
 }
 
-int pop(t_stack **s, int *value)
+int pop(t_stack **s, int *value, t_size **stack_size)
 {
     t_stack *tmp;
 
@@ -37,14 +39,15 @@ int pop(t_stack **s, int *value)
     tmp = *s;
     *s = (*s)->next;
     free(tmp);
+    (*stack_size)->size -= 1;
     return (0);
 }
 
-int    fill_stack(t_stack **s, char *arg)
+int    fill_stack(t_stack **s, char *arg, t_size **stack_size)
 {
     int value;
 
     value = ft_atoi(arg);
-    push(s, value);
+    push(s, value, stack_size);
     return (value);
 }

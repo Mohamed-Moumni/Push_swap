@@ -66,9 +66,9 @@ int	stack_is_sorted(t_stack *stack)
 
 	length = 0;
 	tmp_stack = stack;
-	while (tmp_stack->next)
+	while (tmp_stack)
 	{
-		if (tmp_stack->next < tmp_stack)
+		if (tmp_stack->next && tmp_stack->number  > tmp_stack->next->number)
 		{
 			return (1);
 		}
