@@ -1,62 +1,88 @@
 #include "push_swap.h"
 
-int max_arr(int *tab, int size)
-{
-    int max;
-    int i;
 
-    i = 0;
+t_stack *max_of_length(t_stack **stack)
+{
+    int     max;
+    t_stack *tmp_stack;
+    t_stack *max_elem;
+
+    tmp_stack = *stack;
     max = 0;
-    while (i < size)
+    while (tmp_stack)
     {
-        if (tab[i] >= max)
-            max = tab[i];
-        i++;
+        if (tmp_stack->length  >= max)
+        {
+            max = tmp_stack->length;
+            max_elem = tmp_stack;
+        }
+        tmp_stack = tmp_stack->next;
     }
-    return (max);
+    return (max_elem);
 }
 
-void    array_init(int *tab, int size, int  number)
+t_stack *find_elem_by_index(t_stack **stack, int prev)
 {
-    int i;
+    t_stack *tmp_stack;
 
-    i = 0;
-    while (i < size)
+    tmp_stack = *stack;
+    while (tmp_stack)
     {
-        tab[i] = number;
-        i++;
+        if (tmp_stack->index == prev)
+        {
+            return (tmp_stack);
+        }
+        tmp_stack = tmp_stack->next;
+    }
+    return (NULL);
+}
+
+void    get_LIS(t_stack **stack)
+{
+    t_stack *tmp_stack;
+    int     index;
+    int max;
+
+    tmp_stack = max_of_length(stack);
+    tmp_stack->lis = 1;
+    max = tmp_stack->length;
+    index = tmp_stack->prev;
+    max--;
+    while (max > 0)
+    {
+        tmp_stack = find_elem_by_index(stack, index);
+        tmp_stack->lis = 1;
+        index = tmp_stack->prev;
+        max--;
     }
 }
 
-int *LSI_PosInStack(t_stack **stack, int size, int *max, int j)
-{
-    t_stack *tmp1;
-    t_stack *tmp2;
-    int d[size];
-    int *p;
-    int i;
 
-    array_init(d, size, 1);
-    p = malloc(sizeof(int) * size);
-    array_init(p, size, -1);
-    tmp1 = *(stack);
+void    LIS_in_stack(t_stack **stack, int size)
+{
+    t_stack *tmp_stack1;
+    t_stack *tmp_stack2;
+    int     i;
+    int     j;
+
     i = 0;
+    tmp_stack1 = *stack;
     while (i < size)
     {
-        tmp2 = *(stack);
         j = 0;
+        tmp_stack2 = *stack;
         while (j < i)
         {
-            if (tmp2->number < tmp1->number && d[i] <= d[j] + 1){
-                d[i] = d[j] + 1;
-                p[i] = j;
+            if (tmp_stack2->number < tmp_stack1->number &&
+                tmp_stack1->length <= tmp_stack2->length + 1)
+            {
+                tmp_stack1->length = tmp_stack2->length + 1;
+                tmp_stack1->prev = j;
             }
-            tmp2 = tmp2->next;
+            tmp_stack2 = tmp_stack2->next;
             j++;
         }
-        tmp1 = tmp1->next;
+        tmp_stack1 = tmp_stack1->next;
         i++;
     }
-    *max = max_arr(d, size);
-    return (p);
 }

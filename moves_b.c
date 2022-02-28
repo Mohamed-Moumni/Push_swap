@@ -16,6 +16,8 @@ void ft_pb(t_stack **stack_a, t_stack **stack_b, t_size **stack_size, t_size **s
 {
     int poped_elem;
 
+    if (*stack_a == NULL)
+        return ;
     poped_elem = 0;
     pop(stack_a, &poped_elem, stack_size);
     push(stack_b, poped_elem, stack_size2);

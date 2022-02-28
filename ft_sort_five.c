@@ -4,10 +4,11 @@ void    push_min_to_B(t_stack **stack_a, t_stack **stack_b, t_size **stack_size,
 {
     int min;
     int size;
-    int rot;
 
-    min = min_stack(*stack_a, (*stack_size)->size);
     size = (*stack_size)->size;
+    if (size <= 3)
+        return ;
+    min = min_stack(*stack_a, (*stack_size)->size);
     if (min <= size / 2)
     {
         min--;

@@ -42,7 +42,7 @@ int	is_number(char *num)
 	{
 		if (num[i] == '-' || num[i] == '+')
 			i++;
-		if (num[i] < '0' && num[i] > '9')
+		if (num[i] < '0' || num[i] > '9')
 			return (1);
 		i++;
 	}
@@ -51,7 +51,6 @@ int	is_number(char *num)
 
 int	check_number(char *num)
 {
-
 	if (is_number(num))
 		ft_error();
 	if (is_integer(num))
@@ -69,9 +68,7 @@ int	stack_is_sorted(t_stack *stack)
 	while (tmp_stack)
 	{
 		if (tmp_stack->next && tmp_stack->number  > tmp_stack->next->number)
-		{
-			return (1);
-		}
+		return (1);
 		length++;
 		tmp_stack = tmp_stack->next;
 	}
