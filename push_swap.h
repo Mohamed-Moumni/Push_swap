@@ -15,15 +15,7 @@
 typedef struct  s_size
 {
     int size;
-
 }   t_size;
-
-typedef struct  s_lis
-{
-    int length;
-    int prev;
-    int index;
-}t_lis;
 
 typedef struct s_stack
 {
@@ -72,4 +64,7 @@ t_stack *max_of_length(t_stack **stack);
 void    get_LIS(t_stack **stack);
 void    LIS_in_stack(t_stack **stack, int size);
 void    A_to_B(t_stack **stack_a, t_stack **stack_b, t_size **stack_size, t_size **stack_size2);
+void    b_top(t_stack **sa, t_stack *sb, int number);
+void    best_elem(t_stack **sa, t_stack **sb);
+
 #endif

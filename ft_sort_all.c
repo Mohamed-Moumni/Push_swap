@@ -68,6 +68,7 @@ int main(int ac, char **av)
         LIS_in_stack(&stack, stack_size->size);
         get_LIS(&stack);
         A_to_B(&stack, &stack2, &stack_size, &stack_size2);
+        // best_elem(&stack,&stack2);
         // printf("here\n");
         // if (stack_is_sorted(stack) == 0)
         //     exit(0);
