@@ -68,6 +68,24 @@ int main(int ac, char **av)
         LIS_in_stack(&stack, stack_size->size);
         get_LIS(&stack);
         A_to_B(&stack, &stack2, &stack_size, &stack_size2);
+        // tmp_stack = stack;
+        // printf("\nThe Stack A:\n");
+        // while(tmp_stack)
+        // {
+        //     printf("%d ", tmp_stack->index);
+        //     tmp_stack = tmp_stack->next;
+        // }
+        // printf("\n");
+        // tmp_stack = stack2;
+        // printf("The Stack B:\n");
+        // while (tmp_stack)
+        // {
+        //     // printf("%d ", tmp_stack->prev);
+        //     printf("%d ",tmp_stack->index);
+        //     tmp_stack = tmp_stack->next;
+        // }
+        // printf("\n");
+        index_stack(&stack2, stack_size2);
         // best_elem(&stack,&stack2);
         // printf("here\n");
         // if (stack_is_sorted(stack) == 0)
@@ -98,21 +116,21 @@ int main(int ac, char **av)
         //     tmp_stack = tmp_stack->next;
         // }
         // printf("\n");
-        tmp_stack = stack2;
-        printf("The Stack B:\n");
-        while (tmp_stack)
-        {
-            // printf("%d ", tmp_stack->prev);
-            printf("%d ",tmp_stack->number);
-            tmp_stack = tmp_stack->next;
-        }
-        tmp_stack = stack;
-        printf("\nThe Stack A:\n");
-        while(tmp_stack)
-        {
-            printf("%d ", tmp_stack->number);
-            tmp_stack = tmp_stack->next;
-        }
+        // tmp_stack = stack2;
+        // printf("The Stack B:\n");
+        // while (tmp_stack)
+        // {
+        //     // printf("%d ", tmp_stack->prev);
+        //     printf("%d ",tmp_stack->index);
+        //     tmp_stack = tmp_stack->next;
+        // }
+        // tmp_stack = stack;
+        // printf("\nThe Stack A:\n");
+        // while(tmp_stack)
+        // {
+        //     printf("%d ", tmp_stack->number);
+        //     tmp_stack = tmp_stack->next;
+        // }
     }
     return (0);
 }

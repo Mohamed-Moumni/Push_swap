@@ -66,5 +66,13 @@ void    LIS_in_stack(t_stack **stack, int size);
 void    A_to_B(t_stack **stack_a, t_stack **stack_b, t_size **stack_size, t_size **stack_size2);
 void    b_top(t_stack **sa, t_stack *sb, int number);
 void    best_elem(t_stack **sa, t_stack **sb);
+void    index_stack(t_stack **stack, t_size *size);
+int elem_pos(t_stack **s_a, t_stack *elem, t_size *size);
+int is_in_top_half(t_stack *s_a, t_stack *elem,t_size *size);
+int is_in_bottom_half(t_stack *s_a, t_stack *elem,t_size *size);
+int min_num(int a, int b);
+int ft_abs(int a);
+void    sort_all(t_stack **s_a ,t_stack **s_b, t_size *size, t_size *size2);
+void    best_move(t_stack *b_elem, int move);
 
 #endif
