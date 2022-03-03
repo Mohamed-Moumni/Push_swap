@@ -26,12 +26,12 @@ void    index_stack(t_stack **stack, t_size *size)
 
 int elem_pos(t_stack **s_a, t_stack *elem, t_size *size)
 {
-    // t_stack *tmp_stack;
     t_stack *last_elm;
 
     last_elm = ft_last_elem(*s_a);
-    if (elem->number > last_elm->number && elem->number < (*s_a)->number)
+    if (elem->number > last_elm->number && elem->number > (*s_a)->number)
     {
+        
         elem->prev = elem->index;
         elem->lis = last_elm->index;
         return (1);
@@ -64,7 +64,7 @@ int is_in_top_half(t_stack *s_a, t_stack *elem,t_size *size)
     }
     return (0);
 }
-// there is more to do with this function//
+
 int is_in_bottom_half(t_stack *s_a, t_stack *elem,t_size *size)
 {
     int     i;

@@ -23,3 +23,22 @@ int min_stack(t_stack *stack, int size)
     }
     return (count);
 }
+
+t_stack *min_elem(t_stack *stack, int size)
+{
+    t_stack *tmp_stack;
+    t_stack *minimum;
+    int     i;
+
+    tmp_stack = stack;
+    minimum = stack;
+    while (tmp_stack)
+    {
+        if (tmp_stack->number <= minimum->number)
+        {
+            minimum = tmp_stack;
+        }
+        tmp_stack = tmp_stack->next;
+    }
+    return (minimum);
+}

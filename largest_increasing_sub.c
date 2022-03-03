@@ -37,7 +37,7 @@ t_stack *find_elem_by_index(t_stack **stack, int prev)
     return (NULL);
 }
 
-void    get_LIS(t_stack **stack)
+void    get_LIS(t_stack **stack, t_size **stack_size)
 {
     t_stack *tmp_stack;
     int     index;
@@ -55,6 +55,9 @@ void    get_LIS(t_stack **stack)
         index = tmp_stack->prev;
         max--;
     }
+    tmp_stack = min_elem(*stack, (*stack_size)->size);
+    printf("%d\n", tmp_stack->number);
+    tmp_stack->lis = 1;
 }
 
 

@@ -58,10 +58,9 @@ void    ft_sort_five(t_stack **stack_a, t_stack **stack_b, t_size **stack_size, 
 void    push_min_to_B(t_stack **stack_a, t_stack **stack_b, t_size **stack_size, t_size **stack_size2);
 void    print_stack(t_stack *stack);
 int     stack_is_sorted(t_stack *stack);
-void    get_LIS(t_stack **stack);
+void    get_LIS(t_stack **stack, t_size **stack_size);
 t_stack *find_elem_by_index(t_stack **stack, int prev);
 t_stack *max_of_length(t_stack **stack);
-void    get_LIS(t_stack **stack);
 void    LIS_in_stack(t_stack **stack, int size);
 void    A_to_B(t_stack **stack_a, t_stack **stack_b, t_size **stack_size, t_size **stack_size2);
 void    b_top(t_stack **sa, t_stack *sb, int number);
@@ -73,6 +72,11 @@ int is_in_bottom_half(t_stack *s_a, t_stack *elem,t_size *size);
 int min_num(int a, int b);
 int ft_abs(int a);
 void    sort_all(t_stack **s_a ,t_stack **s_b, t_size *size, t_size *size2);
-void    best_move(t_stack *b_elem, int move);
+void    best_move(t_stack *b_elem, int move, t_size *size, t_size *size2);
+void    sort(t_stack **stack_a, t_stack **stack_b, t_stack *tmp_stack,t_size **stack_size, t_size **stack_size2);
+int same_sign(int a, int b);
+void    B_to_A(t_stack **stack_a, t_stack **stack_b, t_size **stack_size, t_size **stack_size2);
+t_stack *min_elem(t_stack *stack, int size);
+int calulate_moves(int a, int b, int size1, int size2);
 
 #endif
