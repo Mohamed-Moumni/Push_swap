@@ -2,26 +2,27 @@
 
 void    min_in_top(t_stack **stack, t_size **stack_size)
 {
-    int min;
-    int size;
+    t_stack *tmp_stack;
+    int     min;
+    int     middle;
+    tmp_stack = min_elem(*stack, (*stack_size)->size);
+    // printf("%d\n", tmp_stack->number);
 
-    size = (*stack_size)->size;
-    min = min_stack((*stack), size);
-    if (min == 1)
-        return ;
-    if (min < size / 2)
+    min = tmp_stack->index;
+    middle = (*stack_size)->size / 2;
+    if (min > (middle))
+    {
+        min = (*stack_size)->size - (tmp_stack->index + 1) + 1;
+    while (min--)
+    {
+        ft_reverse_rotate_a(stack, stack_size);
+    }
+    }
+    else
     {
         while (min--)
         {
             ft_rotate_a(stack, stack_size);
-        }
-    }
-    else
-    {
-        while (size >= min)
-        {
-            ft_reverse_rotate_a(stack, stack_size);
-            size--;
         }
     }
 }
@@ -31,6 +32,7 @@ int main(int ac, char **av)
     t_stack *stack;
     t_stack *stack2;
     t_stack *tmp_stack;
+    t_stack *tmp_stack2;
     t_size  *stack_size;
     t_size  *stack_size2;
     int i;
@@ -38,7 +40,7 @@ int main(int ac, char **av)
     int value;
 
     j = ac - 2;
-    i = 1;
+    i = ac - 1;
     if (ac > 2)
     {
         stack = initialiser();
@@ -48,96 +50,68 @@ int main(int ac, char **av)
 
         stack_size->size = 0;
         stack_size2->size = 0;
-        while(av[i])
+        while(i > 0)
         {
             if (check_number(av[i]) == 0)
             {
                 value = fill_stack(&stack, av[i], &stack_size);
-                if (i > 1)
-                {
-                    if(check_duplicate(stack, value))
-                        ft_error();
-                }
+                // if (i > 1)
+                // {
+                //     if(check_duplicate(stack, value))
+                //         ft_error();
+                // }
                 stack->length = 1;
                 stack->prev = -1;
                 stack->index = j;
             }
             j--;
-            i++;
+            i--;
         }
+        index_stack(&stack);
         LIS_in_stack(&stack, stack_size->size);
         get_LIS(&stack, &stack_size);
         A_to_B(&stack, &stack2, &stack_size, &stack_size2);
-        min_in_top(&stack,&stack_size);
-        // tmp_stack = stack;
-        // printf("\nThe Stack A:\n");
-        // while(tmp_stack)
-        // {
-        //     printf("%d ", tmp_stack->index);
-        //     tmp_stack = tmp_stack->next;
-        // }
-        // printf("\n");
-        // tmp_stack = stack2;
-        // printf("The Stack B:\n");
+        B_to_A(&stack, &stack2, &stack_size, &stack_size2);
+        index_stack(&stack);
+        min_in_top(&stack, &stack_size);
+        print_stack(stack);
+        // printf("\nstack A: ");
         // while (tmp_stack)
         // {
-        //     // printf("%d ", tmp_stack->prev);
-        //     printf("%d ",tmp_stack->index);
-        //     tmp_stack = tmp_stack->next;
-        // }
-        // printf("\n");
-        // printf("sorting\n");
-        // tmp_stack = stack2;
-        // printf("\nThe Stack A:\n");
-        // while(tmp_stack)
-        // {
-        //     printf("index[%d ]", tmp_stack->index);
         //     printf("%d \n", tmp_stack->number);
         //     tmp_stack = tmp_stack->next;
         // }
-        B_to_A(&stack, &stack2, &stack_size, &stack_size2);
-        // best_elem(&stack,&stack2);
-        // printf("here\n");
-        // if (stack_is_sorted(stack) == 0)
-        //     exit(0);
-        // ft_sort_five(&stack, &stack2, &stack_size, &stack_size2);
-        // // ft_sort_three(&stack, &stack_size);
-        // tmp_stack = stack;
+        // tmp_stack = stack2;
+        // printf("\nstack B: ");
         // while (tmp_stack)
         // {
-        //     printf("%d ",tmp_stack->index);
-        //     // printf("%d \n",tmp_stack->prev);
+        //     printf("%d ", tmp_stack->number);
         //     tmp_stack = tmp_stack->next;
         // }
+        // tmp_stack = stack2;
+        // while (tmp_stack)
+        // {
+        //     printf("prev[%d ] ", tmp_stack->prev);
+        //     printf("lis[%d ] ", tmp_stack->lis);
+        //     printf("\n");
+        //     tmp_stack = tmp_stack->next;
+        // }
+        // printf("stack A: ");
+        // tmp_stack = stack2;
+        // while (tmp_stack)
+        // {
+        //     printf("[%d] [%d] \n", tmp_stack->index, tmp_stack->number);
+        //     tmp_stack = tmp_stack->next;
+        // }
+        //indexation
         // printf("\n");
-        // tmp_stack = stack;
         // while (tmp_stack)
         // {
-        //     // printf("%d \n",tmp_stack->length);
-        //     printf("%d --- %d\n",tmp_stack->lis, tmp_stack->number); 11 15 20 26 29 36 45 47 49 52 53 55 66 68 71 77 85 88
+        //     printf("index [%d] elem[%d] prev [%d] lis [%d] length[%d]\n", tmp_stack->index,tmp_stack->number, tmp_stack->prev, tmp_stack->lis, tmp_stack->length);
         //     tmp_stack = tmp_stack->next;
         // }
-        tmp_stack = stack;
-        // printf("%s\n",tmp_stack);
-        while (tmp_stack)
-        {
-            // printf("%d ", tmp_stack->prev);
-            printf("%d ",tmp_stack->number);
-            tmp_stack = tmp_stack->next;
-        }
-        printf("\n");
-        tmp_stack = stack2;
-        printf("The Stack B:\n");
-        while (tmp_stack)
-        {
-            printf("content[%d] ", tmp_stack->number);
-            printf("index[%d ]", tmp_stack->index);
-            printf("prev[%d ]",tmp_stack->prev);
-            printf("lis[%d ]",tmp_stack->lis);
-            printf("length[%d ]",tmp_stack->length);
-            printf("\n");
-            tmp_stack = tmp_stack->next;
-        }
+        // // printf("here2\n");
+        // printf("here3\n");
     }
     return (0);
 }

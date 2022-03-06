@@ -41,7 +41,7 @@ void    get_LIS(t_stack **stack, t_size **stack_size)
 {
     t_stack *tmp_stack;
     int     index;
-    int max;
+    int     max;
 
     tmp_stack = max_of_length(stack);
     tmp_stack->lis = 1;
@@ -55,9 +55,6 @@ void    get_LIS(t_stack **stack, t_size **stack_size)
         index = tmp_stack->prev;
         max--;
     }
-    tmp_stack = min_elem(*stack, (*stack_size)->size);
-    printf("%d\n", tmp_stack->number);
-    tmp_stack->lis = 1;
 }
 
 

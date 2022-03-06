@@ -42,3 +42,21 @@ t_stack *min_elem(t_stack *stack, int size)
     }
     return (minimum);
 }
+
+int max_stack(t_stack *stack, int size)
+{
+    t_stack *tmp_stack;
+    int     max;
+
+    max = 0;
+    tmp_stack = stack;
+    while (tmp_stack)
+    {
+        if (max <= tmp_stack->number)
+        {
+            max = tmp_stack->index;
+        }
+        tmp_stack = tmp_stack->next;
+    }
+    return (max);
+}
