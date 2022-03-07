@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   sort_all.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mmoumni <mmoumni@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/03/07 21:17:33 by mmoumni           #+#    #+#             */
+/*   Updated: 2022/03/07 21:17:34 by mmoumni          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
 int max(int a, int b)
@@ -86,50 +98,16 @@ void    B_to_A(t_stack **stack_a, t_stack **stack_b, t_size **stack_size, t_size
     {
         index_stack(stack_a);
         index_stack(stack_b);
+        // printf("-----------A-------------\n");
+        // print_stack(*stack_a);
+        // printf("-----------B-------------\n");
+        // print_stack(*stack_b);
         sort_all(stack_a, stack_b, *stack_size, *stack_size2);
         tmp_stack = min_move(stack_b);
+        // printf("elem{%d} index{%d} | pair: {%d}\n",tmp_stack->number, tmp_stack->index, tmp_stack->lis);
         // printf("-----------------------------\n");
         move_to_top(stack_a, stack_b, stack_size, stack_size2, tmp_stack);
         ft_pa(stack_a, stack_b, stack_size, stack_size2);
         // printf("-----------------------------\n");
     }
-    // index_stack(stack_a);
-    // tmp_stack = min_elem(*stack_a, (*stack_size)->size);
-    // if (tmp_stack->index <= (*stack_size)->size / 2)
-    // {
-    //     move = tmp_stack->index;
-    //     while (move--)
-    //         ft_rotate_a(stack_a, stack_size);
-    // }
-    // else
-    // {
-    //     move = (*stack_size)->size - (tmp_stack->index + 1 ) + 1;
-    //     while (move--)
-    //         ft_reverse_rotate_a(stack_a, stack_size);
-    // }
-        // index_stack(stack_a);
-        // index_stack(stack_b);
-        // sort_all(stack_a, stack_b, *stack_size, *stack_size2);
-        // tmp_stack = min_move(stack_b);
-        // move_to_top(stack_a, stack_b, stack_size, stack_size2, tmp_stack);
-        // ft_pa(stack_a, stack_b, stack_size, stack_size2);
-        // index_stack(stack_a);
-        // index_stack(stack_b);
-        // sort_all(stack_a, stack_b, *stack_size, *stack_size2);
-        // tmp_stack = min_move(stack_b);
-        // move_to_top(stack_a, stack_b, stack_size, stack_size2, tmp_stack);
-        // ft_pa(stack_a, stack_b, stack_size, stack_size2);
-        // index_stack(stack_a);
-        // index_stack(stack_b);
-        // sort_all(stack_a, stack_b, *stack_size, *stack_size2);
-        // tmp_stack = min_move(stack_b);
-        // move_to_top(stack_a, stack_b, stack_size, stack_size2, tmp_stack);
-        // ft_pa(stack_a, stack_b, stack_size, stack_size2);
-        // index_stack(stack_a);
-        // index_stack(stack_b);
-        // sort_all(stack_a, stack_b, *stack_size, *stack_size2);
-//         tmp_stack = min_move(stack_b);
-//         move_to_top(stack_a, stack_b, stack_size, stack_size2, tmp_stack);
-//         ft_pa(stack_a, stack_b, stack_size, stack_size2);
-// // }
 }

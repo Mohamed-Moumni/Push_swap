@@ -1,16 +1,27 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_sort_all.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mmoumni <mmoumni@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/03/07 19:27:35 by mmoumni           #+#    #+#             */
+/*   Updated: 2022/03/07 21:40:33 by mmoumni          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
-void    min_in_top(t_stack **stack, t_size **stack_size)
+void	min_in_top(t_stack **stack, t_size **stack_size)
 {
-    t_stack *tmp_stack;
-    int     min;
-    int     middle;
+	t_stack	*tmp_stack;
+	int		min;
+	int		middle;
+	
     tmp_stack = min_elem(*stack, (*stack_size)->size);
-    // printf("%d\n", tmp_stack->number);
-
     min = tmp_stack->index;
     middle = (*stack_size)->size / 2;
-    if (min > (middle))
+    if (min > middle)
     {
         min = (*stack_size)->size - (tmp_stack->index + 1) + 1;
     while (min--)
@@ -55,11 +66,11 @@ int main(int ac, char **av)
             if (check_number(av[i]) == 0)
             {
                 value = fill_stack(&stack, av[i], &stack_size);
-                // if (i > 1)
-                // {
-                //     if(check_duplicate(stack, value))
-                //         ft_error();
-                // }
+                if (i < ac - 2)
+                {
+                    if(check_duplicate(stack, value))
+                        ft_error();
+                }
                 stack->length = 1;
                 stack->prev = -1;
                 stack->index = j;
@@ -68,50 +79,13 @@ int main(int ac, char **av)
             i--;
         }
         index_stack(&stack);
-        LIS_in_stack(&stack, stack_size->size);
-        get_LIS(&stack, &stack_size);
+        lis_in_stack(&stack, stack_size->size);
+        get_lis(&stack, &stack_size);
         A_to_B(&stack, &stack2, &stack_size, &stack_size2);
         B_to_A(&stack, &stack2, &stack_size, &stack_size2);
         index_stack(&stack);
         min_in_top(&stack, &stack_size);
-        print_stack(stack);
-        // printf("\nstack A: ");
-        // while (tmp_stack)
-        // {
-        //     printf("%d \n", tmp_stack->number);
-        //     tmp_stack = tmp_stack->next;
-        // }
-        // tmp_stack = stack2;
-        // printf("\nstack B: ");
-        // while (tmp_stack)
-        // {
-        //     printf("%d ", tmp_stack->number);
-        //     tmp_stack = tmp_stack->next;
-        // }
-        // tmp_stack = stack2;
-        // while (tmp_stack)
-        // {
-        //     printf("prev[%d ] ", tmp_stack->prev);
-        //     printf("lis[%d ] ", tmp_stack->lis);
-        //     printf("\n");
-        //     tmp_stack = tmp_stack->next;
-        // }
-        // printf("stack A: ");
-        // tmp_stack = stack2;
-        // while (tmp_stack)
-        // {
-        //     printf("[%d] [%d] \n", tmp_stack->index, tmp_stack->number);
-        //     tmp_stack = tmp_stack->next;
-        // }
-        //indexation
-        // printf("\n");
-        // while (tmp_stack)
-        // {
-        //     printf("index [%d] elem[%d] prev [%d] lis [%d] length[%d]\n", tmp_stack->index,tmp_stack->number, tmp_stack->prev, tmp_stack->lis, tmp_stack->length);
-        //     tmp_stack = tmp_stack->next;
-        // }
-        // // printf("here2\n");
-        // printf("here3\n");
+        // print_stack(stack);
     }
     return (0);
 }

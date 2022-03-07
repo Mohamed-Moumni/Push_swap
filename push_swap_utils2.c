@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   push_swap_utils2.c                                 :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mmoumni <mmoumni@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/03/07 21:17:23 by mmoumni           #+#    #+#             */
+/*   Updated: 2022/03/07 21:17:24 by mmoumni          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
 int min_stack(t_stack *stack, int size)
@@ -34,7 +46,7 @@ t_stack *min_elem(t_stack *stack, int size)
     minimum = stack;
     while (tmp_stack)
     {
-        if (tmp_stack->number <= minimum->number)
+        if (tmp_stack->number < minimum->number)
         {
             minimum = tmp_stack;
         }

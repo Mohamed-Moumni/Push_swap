@@ -1,4 +1,23 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   push_B_to_A.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mmoumni <mmoumni@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/03/07 21:17:15 by mmoumni           #+#    #+#             */
+/*   Updated: 2022/03/07 21:51:30 by mmoumni          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
+
+intft_min(int value1, int value2)
+{
+    if (value1 > value2)
+        return (value2);
+    return (value1);
+}
 
 void    index_stack(t_stack **stack)
 {
@@ -58,9 +77,6 @@ void    move_to_top(t_stack **stack_a, t_stack **stack_b, t_size **stack_size, t
         double_or_riple_r(stack_a, stack_b, stack_size, stack_size2, b_elem);
     else
         normal_moves(stack_a, stack_b, stack_size, stack_size2, b_elem);
-    // printf("-----------------------------\n");
-    // printf("cont{%d} index{%d} -> [%d]\n", b_elem->number, b_elem->index, b_elem->lis);
-    // printf("-----------------------------\n");
 }
 
 void    normal_moves(t_stack **stack_a, t_stack **stack_b, t_size **stack_size, t_size **stack_size2, t_stack *b_elem)
@@ -80,7 +96,7 @@ void    normal_moves(t_stack **stack_a, t_stack **stack_b, t_size **stack_size, 
     else
     {
         move = b_elem->index;
-        while ( move != 0)
+        while (move != 0)
         {
             ft_rotate_b(stack_b, stack_size2);
             move--;
@@ -108,49 +124,27 @@ void    double_or_riple_r(t_stack **stack_a, t_stack **stack_b, t_size **stack_s
     int middle;
     int middle2;
     int moves;
+    t_stack *a_elem;
 
+    a_elem = find_elem_by_index(stack_a, b_elem->lis);
     middle = ((*stack_size)->size / 2);
     middle2 = ((*stack_size2)->size / 2);
     if (b_elem->index <= middle2)
     {
-        if (b_elem->index >= b_elem->lis)
-        {
-            moves = b_elem->lis;
-            while (moves--)
-                ft_rr(stack_a, stack_b, stack_size, stack_size2);
-            moves = b_elem->index - b_elem->lis;
-            while (moves--)
-                ft_rotate_b(stack_b, stack_size2);
-        }
-        else
-        {
-            moves = b_elem->index;
-            while (moves--)
-                ft_rr(stack_a, stack_b, stack_size, stack_size2);
-            moves = b_elem->lis - b_elem->index;
-            while (moves--)
-                ft_rotate_a(stack_a, stack_size);
-        }
+        while ((*stack_a)->number != a_elem->number && (*stack_b)->number != b_elem->number)
+            ft_rr(stack_a, stack_b, stack_size, stack_size2);
+        while ((*stack_a)->number != a_elem->number)
+            ft_rotate_a(stack_a, stack_size);
+        while ((*stack_b)->number != b_elem->number)
+            ft_rotate_b(stack_b, stack_size2);
     }
     else
     {
-        if (b_elem->index >= b_elem->lis)
-        {
-            moves = (*stack_size2)->size - (b_elem->index + 1) + 1;
-            while (moves--)
-                ft_rrr(stack_a, stack_b, stack_size, stack_size2);
-            moves = b_elem->index - b_elem->lis;
-            while (moves--)
-                ft_reverse_rotate_a(stack_a, stack_size);
-        }
-        else
-        {
-            moves = (*stack_size)->size - (b_elem->lis + 1) + 1;
-            while (moves--)
-                ft_rrr(stack_a, stack_b, stack_size, stack_size2);
-            moves = b_elem->lis - b_elem->index;
-            while (moves--)
-                ft_reverse_rotate_b(stack_b, stack_size2);
-        }
+        while ((*stack_a)->number != a_elem->number && (*stack_b)->number != b_elem->number)
+            ft_rrr(stack_a, stack_b, stack_size, stack_size2);
+        while ((*stack_a)->number != a_elem->number)
+            ft_reverse_rotate_a(stack_a, stack_size);
+        while ((*stack_b)->number != b_elem->number)
+            ft_reverse_rotate_b(stack_b, stack_size2);
     }
 }

@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   push_swap.h                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mmoumni <mmoumni@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/03/07 21:17:27 by mmoumni           #+#    #+#             */
+/*   Updated: 2022/03/07 21:37:43 by mmoumni          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef PUSH_SWAP_H
 #define PUSH_SWAP_H
 
@@ -58,10 +70,10 @@ void    ft_sort_five(t_stack **stack_a, t_stack **stack_b, t_size **stack_size, 
 void    push_min_to_B(t_stack **stack_a, t_stack **stack_b, t_size **stack_size, t_size **stack_size2);
 void    print_stack(t_stack *stack);
 int     stack_is_sorted(t_stack *stack);
-void    get_LIS(t_stack **stack, t_size **stack_size);
+void	get_lis(t_stack **stack, t_size **stack_size);
 t_stack *find_elem_by_index(t_stack **stack, int prev);
 t_stack *max_of_length(t_stack **stack);
-void    LIS_in_stack(t_stack **stack, int size);
+void	lis_in_stack(t_stack **stack, int size);
 void    A_to_B(t_stack **stack_a, t_stack **stack_b, t_size **stack_size, t_size **stack_size2);
 void    index_stack(t_stack **stack);
 void    elem_pos(t_stack **s_a, t_stack *elem, t_size *size);
