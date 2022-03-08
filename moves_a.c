@@ -6,13 +6,13 @@
 /*   By: mmoumni <mmoumni@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/07 21:17:00 by mmoumni           #+#    #+#             */
-/*   Updated: 2022/03/07 21:17:01 by mmoumni          ###   ########.fr       */
+/*   Updated: 2022/03/08 18:32:52 by mmoumni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include"push_swap.h"
 
-void    ft_swap_a(t_stack **stack)
+void    ft_swap_a(t_stack **stack) /// 3ndak swap
 {
     int tmp;
     int tmp_next;

@@ -6,7 +6,7 @@
 /*   By: mmoumni <mmoumni@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/07 19:27:35 by mmoumni           #+#    #+#             */
-/*   Updated: 2022/03/07 21:40:33 by mmoumni          ###   ########.fr       */
+/*   Updated: 2022/03/08 21:32:13 by mmoumni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,17 +24,13 @@ void	min_in_top(t_stack **stack, t_size **stack_size)
     if (min > middle)
     {
         min = (*stack_size)->size - (tmp_stack->index + 1) + 1;
-    while (min--)
-    {
-        ft_reverse_rotate_a(stack, stack_size);
-    }
+        while (min--)
+            ft_reverse_rotate_a(stack, stack_size);
     }
     else
     {
         while (min--)
-        {
             ft_rotate_a(stack, stack_size);
-        }
     }
 }
 
@@ -79,13 +75,16 @@ int main(int ac, char **av)
             i--;
         }
         index_stack(&stack);
-        lis_in_stack(&stack, stack_size->size);
+        find_lis(&stack);
         get_lis(&stack, &stack_size);
+        // print_stack(stack);
         A_to_B(&stack, &stack2, &stack_size, &stack_size2);
+        index_stack(&stack);
+        // min_in_top(&stack, &stack_size);
         B_to_A(&stack, &stack2, &stack_size, &stack_size2);
+        // print_stack(stack);
         index_stack(&stack);
         min_in_top(&stack, &stack_size);
-        // print_stack(stack);
     }
     return (0);
 }

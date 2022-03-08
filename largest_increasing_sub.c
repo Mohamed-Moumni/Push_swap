@@ -6,7 +6,7 @@
 /*   By: mmoumni <mmoumni@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/07 21:16:56 by mmoumni           #+#    #+#             */
-/*   Updated: 2022/03/07 21:37:52 by mmoumni          ###   ########.fr       */
+/*   Updated: 2022/03/08 21:37:24 by mmoumni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ t_stack	*max_of_length(t_stack **stack)
 	max = 0;
 	while (tmp_stack)
 	{
-		if (tmp_stack->length >= max)
+		if (tmp_stack->length > max)
 		{
 			max = tmp_stack->length;
 			max_elem = tmp_stack;
@@ -54,43 +54,34 @@ void	get_lis(t_stack **stack, t_size **stack_size)
 
 	tmp_stack = max_of_length(stack);
 	tmp_stack->lis = 1;
-	max = tmp_stack->length;
 	index = tmp_stack->prev;
-	max--;
-	while (max > 0)
+	while (index != -1)
 	{
 		tmp_stack = find_elem_by_index(stack, index);
 		tmp_stack->lis = 1;
 		index = tmp_stack->prev;
-		max--;
 	}
 }
 
-void	lis_in_stack(t_stack **stack, int size)
+void    find_lis(t_stack **stack)
 {
-	t_stack	*tmp_stack1;
-	t_stack	*tmp_stack2;
-	int		i;
-	int		j;
+    t_stack *tmp_i;
+    t_stack	*tmp_j;
 
-	i = 0;
-	tmp_stack1 = *stack;
-	while (i < size)
-	{
-		j = 0;
-		tmp_stack2 = *stack;
-		while (j < i)
-		{
-			if (tmp_stack2->number < tmp_stack1->number
-				&& tmp_stack1->length <= tmp_stack2->length + 1)
-			{
-				tmp_stack1->length = tmp_stack2->length + 1;
-				tmp_stack1->prev = j;
-			}
-			tmp_stack2 = tmp_stack2->next;
-			j++;
-		}
-		tmp_stack1 = tmp_stack1->next;
-		i++;
-	}
+    tmp_i = (*stack)->next;
+    while (tmp_i != NULL)
+    {
+        tmp_j = *stack;
+        while (tmp_j != tmp_i)
+        {
+            if (tmp_i->number > tmp_j->number)
+            {
+				tmp_i->length = max(tmp_i->length, tmp_j->length + 1);
+                if (tmp_i->length <= tmp_j->length + 1)
+                    tmp_i->prev = tmp_j->index;
+            }
+            tmp_j = tmp_j->next;
+        }
+        tmp_i = tmp_i->next;
+    }
 }

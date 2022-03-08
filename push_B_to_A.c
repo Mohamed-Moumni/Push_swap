@@ -6,13 +6,13 @@
 /*   By: mmoumni <mmoumni@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/07 21:17:15 by mmoumni           #+#    #+#             */
-/*   Updated: 2022/03/07 21:51:30 by mmoumni          ###   ########.fr       */
+/*   Updated: 2022/03/08 21:37:31 by mmoumni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-intft_min(int value1, int value2)
+int	ft_min(int value1, int value2)
 {
     if (value1 > value2)
         return (value2);
@@ -29,8 +29,8 @@ void    index_stack(t_stack **stack)
     while (tmp_stack)
     {
         tmp_stack->index = i;
-        tmp_stack->prev = i;
         tmp_stack->length = 0;
+        tmp_stack->lis = 0;
         i++;
         tmp_stack = tmp_stack->next;
     }
@@ -47,20 +47,15 @@ void    elem_pos(t_stack **s_a, t_stack *elem, t_size *size)
     {
         if ((elem->number > tmp_stack->number && elem->number < tmp_stack->next->number))
         {
-            elem->prev = elem->index;
             elem->lis = tmp_stack->next->index;
             return ;
         }
         tmp_stack = tmp_stack->next;
     }
     if (elem->number < head->number && elem->number > tmp_stack->number)
-    {
-        elem->prev = elem->index;
         elem->lis = head->index;
-    }
     else
     {
-        elem->prev = elem->index;
         tmp_stack = min_elem(*s_a, size->size);
         elem->lis = tmp_stack->index;
     }
@@ -83,38 +78,31 @@ void    normal_moves(t_stack **stack_a, t_stack **stack_b, t_size **stack_size, 
 {
     int middle;
     int middle2;
-    int move;
+    t_stack *a_elem;
 
     middle = ((*stack_size)->size / 2);
     middle2 = ((*stack_size2)->size / 2);
+    a_elem = find_elem_by_index(stack_a, b_elem->lis);
     if (b_elem->index > middle2)
     {
-        move = (*stack_size2)->size - (b_elem->index + 1) + 1;
-        while (move--)
+        while ((*stack_b)->number != b_elem->number)
             ft_reverse_rotate_b(stack_b,stack_size2);
     }
     else
     {
-        move = b_elem->index;
-        while (move != 0)
-        {
+        while ((*stack_b)->number != b_elem->number)
             ft_rotate_b(stack_b, stack_size2);
-            move--;
-        }
     }
     if (b_elem->lis > middle)
     {
-        move = (*stack_size)->size - (b_elem->lis + 1) + 1;
-        while (move--)
+        while ((*stack_a)->number != a_elem->number)
             ft_reverse_rotate_a(stack_a, stack_size);
     }
     else
     {
-        move = b_elem->lis;
-        while (move != 0)
+        while ((*stack_a)->number != a_elem->number)
         {
             ft_rotate_a(stack_a, stack_size);
-            move--;
         }
     }
 }

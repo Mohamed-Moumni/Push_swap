@@ -6,7 +6,7 @@
 /*   By: mmoumni <mmoumni@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/07 21:17:33 by mmoumni           #+#    #+#             */
-/*   Updated: 2022/03/07 21:17:34 by mmoumni          ###   ########.fr       */
+/*   Updated: 2022/03/08 21:22:09 by mmoumni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,19 +19,23 @@ int max(int a, int b)
     return (b);
 }
 
-void    calculate_best_elem(t_stack *b_elem, t_size *size, t_size *size2)
+void     calculate_best_elem(t_stack *b_elem, t_size *size, t_size *size2)
 {
     int middle;
     int middle2;
     int moves;
+    int a;
+    int b;
 
     middle = (size->size / 2);
     middle2 = (size2->size / 2);
     moves = 0;
     if (((b_elem->index > middle2 && b_elem->lis > middle) || (b_elem->index <= middle2 && b_elem->lis <= middle)))
     {
+        a = (size)->size - (b_elem->index + 1) + 1;
+        b = (size2)->size - (b_elem->lis + 1) + 1;
         if ((b_elem->index > middle2 && b_elem->lis > middle))
-            b_elem->length = max((size)->size - (b_elem->index + 1) + 1, (size2)->size - (b_elem->lis + 1) + 1);
+            b_elem->length = max(a, b);
         else
             b_elem->length = max(b_elem->index, b_elem->lis);
     }
@@ -86,7 +90,7 @@ void    print_stack(t_stack *stack)
 {
     while (stack)
     {
-        printf("ele[%d] index[%d]\n",stack->number, stack->index);
+        printf("ele[%d] index[%d] lis[%d] -> p_index[%d] (%d)\n",stack->number, stack->index, stack->lis, stack->prev, stack->length);
         stack = stack->next;
     }
 }
@@ -102,12 +106,13 @@ void    B_to_A(t_stack **stack_a, t_stack **stack_b, t_size **stack_size, t_size
         // print_stack(*stack_a);
         // printf("-----------B-------------\n");
         // print_stack(*stack_b);
+        // printf("-----------------------------\n");
         sort_all(stack_a, stack_b, *stack_size, *stack_size2);
         tmp_stack = min_move(stack_b);
+        // printf("l9wada[%d]\n", tmp_stack->length);
         // printf("elem{%d} index{%d} | pair: {%d}\n",tmp_stack->number, tmp_stack->index, tmp_stack->lis);
         // printf("-----------------------------\n");
         move_to_top(stack_a, stack_b, stack_size, stack_size2, tmp_stack);
         ft_pa(stack_a, stack_b, stack_size, stack_size2);
-        // printf("-----------------------------\n");
     }
 }

@@ -6,7 +6,7 @@
 /*   By: mmoumni <mmoumni@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/07 21:17:27 by mmoumni           #+#    #+#             */
-/*   Updated: 2022/03/07 21:37:43 by mmoumni          ###   ########.fr       */
+/*   Updated: 2022/03/08 19:26:14 by mmoumni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,5 +90,7 @@ void    normal_moves(t_stack **stack_a, t_stack **stack_b, t_size **stack_size, 
 void    move_to_top(t_stack **stack_a, t_stack **stack_b, t_size **stack_size, t_size **stack_size2, t_stack *b_elem);
 int max_stack(t_stack *stack, int size);
 void    print_stack(t_stack *stack);
+void    find_lis(t_stack **stack);
+int max(int a, int b);
 
 #endif
