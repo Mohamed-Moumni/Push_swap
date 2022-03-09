@@ -6,7 +6,7 @@
 /*   By: mmoumni <mmoumni@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/07 21:17:37 by mmoumni           #+#    #+#             */
-/*   Updated: 2022/03/08 12:15:41 by mmoumni          ###   ########.fr       */
+/*   Updated: 2022/03/09 17:21:20 by mmoumni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int	is_empty(t_stack *s)
 		return (0);
 }
 
-void	push(t_stack **s, int value, t_size **stack_size)
+void	push(t_stack **s, int value, t_info *info)
 {
 	t_stack	*new_node;
 
@@ -33,13 +33,11 @@ void	push(t_stack **s, int value, t_size **stack_size)
 	if (!new_node)
 		return ;
 	new_node->number = value;
-	new_node->lis = 0;
 	new_node->next = *s;
 	*s = new_node;
-	(*stack_size)->size += 1;
 }
 
-int	pop(t_stack **s, int *value, t_size **stack_size)
+int	pop(t_stack **s, int *value, t_info *info)
 {
 	t_stack	*tmp;
 
@@ -49,15 +47,14 @@ int	pop(t_stack **s, int *value, t_size **stack_size)
 	tmp = *s;
 	*s = (*s)->next;
 	free(tmp);
-	(*stack_size)->size -= 1;
 	return (0);
 }
 
-int	fill_stack(t_stack **s, char *arg, t_size **stack_size)
+int	fill_stack(t_stack **s, char *arg, t_info *info)
 {
 	int	value;
 
 	value = ft_atoi(arg);
-	push(s, value, stack_size);
+	push(s, value, info);
 	return (value);
 }

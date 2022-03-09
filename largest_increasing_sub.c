@@ -6,7 +6,7 @@
 /*   By: mmoumni <mmoumni@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/07 21:16:56 by mmoumni           #+#    #+#             */
-/*   Updated: 2022/03/08 21:37:24 by mmoumni          ###   ########.fr       */
+/*   Updated: 2022/03/09 17:33:56 by mmoumni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,9 @@ t_stack	*max_of_length(t_stack **stack)
 	max = 0;
 	while (tmp_stack)
 	{
-		if (tmp_stack->length > max)
+		if (tmp_stack->lis_len > max)
 		{
-			max = tmp_stack->length;
+			max = tmp_stack->lis_len;
 			max_elem = tmp_stack;
 		}
 		tmp_stack = tmp_stack->next;
@@ -32,21 +32,21 @@ t_stack	*max_of_length(t_stack **stack)
 	return (max_elem);
 }
 
-t_stack	*find_elem_by_index(t_stack **stack, int prev)
+t_stack	*find_elem_by_index(t_stack **stack, int index)
 {
 	t_stack	*tmp_stack;
 
 	tmp_stack = *stack;
 	while (tmp_stack)
 	{
-		if (tmp_stack->index == prev)
+		if (tmp_stack->index == index)
 			return (tmp_stack);
 		tmp_stack = tmp_stack->next;
 	}
 	return (NULL);
 }
 
-void	get_lis(t_stack **stack, t_size **stack_size)
+void	get_lis(t_stack **stack)
 {
 	t_stack	*tmp_stack;
 	int		index;
@@ -63,25 +63,25 @@ void	get_lis(t_stack **stack, t_size **stack_size)
 	}
 }
 
-void    find_lis(t_stack **stack)
+void	find_lis(t_stack **stack)
 {
-    t_stack *tmp_i;
-    t_stack	*tmp_j;
+	t_stack	*tmp_i;
+	t_stack	*tmp_j;
 
-    tmp_i = (*stack)->next;
-    while (tmp_i != NULL)
-    {
-        tmp_j = *stack;
-        while (tmp_j != tmp_i)
-        {
-            if (tmp_i->number > tmp_j->number)
-            {
-				tmp_i->length = max(tmp_i->length, tmp_j->length + 1);
-                if (tmp_i->length <= tmp_j->length + 1)
-                    tmp_i->prev = tmp_j->index;
-            }
-            tmp_j = tmp_j->next;
-        }
-        tmp_i = tmp_i->next;
-    }
+	tmp_i = (*stack)->next;
+	while (tmp_i != NULL)
+	{
+		tmp_j = *stack;
+		while (tmp_j != tmp_i)
+		{
+			if (tmp_i->number > tmp_j->number)
+			{
+				tmp_i->lis_len = ft_max(tmp_i->lis_len, tmp_j->lis_len + 1);
+				if (tmp_i->lis_len <= tmp_j->lis_len + 1)
+					tmp_i->prev = tmp_j->index;
+			}
+			tmp_j = tmp_j->next;
+		}
+		tmp_i = tmp_i->next;
+	}
 }

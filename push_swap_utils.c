@@ -6,7 +6,7 @@
 /*   By: mmoumni <mmoumni@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/07 21:17:19 by mmoumni           #+#    #+#             */
-/*   Updated: 2022/03/07 21:17:20 by mmoumni          ###   ########.fr       */
+/*   Updated: 2022/03/09 10:33:19 by mmoumni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int	ft_atoi(char *number)
 	int			i;
 	int			sign;
 	int			result;
-	
+
 	i = 0;
 	result = 0;
 	sign = 1;
@@ -72,15 +72,15 @@ int	check_number(char *num)
 
 int	stack_is_sorted(t_stack *stack)
 {
-	t_stack *tmp_stack;
+	t_stack	*tmp_stack;
 	int		length;
 
 	length = 0;
 	tmp_stack = stack;
 	while (tmp_stack)
 	{
-		if (tmp_stack->next && tmp_stack->number  > tmp_stack->next->number)
-		return (1);
+		if (tmp_stack->next && tmp_stack->number > tmp_stack->next->number)
+			return (1);
 		length++;
 		tmp_stack = tmp_stack->next;
 	}
