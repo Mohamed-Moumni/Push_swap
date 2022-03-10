@@ -6,7 +6,7 @@
 /*   By: mmoumni <mmoumni@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/07 21:17:03 by mmoumni           #+#    #+#             */
-/*   Updated: 2022/03/09 18:39:13 by mmoumni          ###   ########.fr       */
+/*   Updated: 2022/03/10 12:27:37 by mmoumni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,14 +23,18 @@ void	ft_reverse_rotate(t_stack **stack, char *move, t_info *info)
 {
 	int		poped_elem;
 	t_stack	*before_last;
+	t_stack	*old_head;
+	t_stack	*new_head;
 
 	before_last = (*stack);
+	old_head = *stack;
 	while ((before_last)->next->next != NULL)
 		before_last = before_last->next;
 	poped_elem = before_last->next->number;
-	free(before_last->next);
+	new_head = before_last->next;
+	new_head->next = old_head;
+	*stack = new_head;
 	before_last->next = NULL;
-	push(stack, poped_elem, info);
 	ft_print_move(move);
 }
 

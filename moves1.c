@@ -6,7 +6,7 @@
 /*   By: mmoumni <mmoumni@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/07 21:17:00 by mmoumni           #+#    #+#             */
-/*   Updated: 2022/03/09 17:45:58 by mmoumni          ###   ########.fr       */
+/*   Updated: 2022/03/10 21:44:00 by mmoumni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ void	ft_push(t_stack **stack_a, t_stack **stack_b, char *move, t_info *info)
 	if ((*stack_a) == NULL)
 		return ;
 	poped_elem = 0;
-	pop(stack_a, &poped_elem,info);
+	pop(stack_a, &poped_elem, info);
 	push(stack_b, poped_elem, info);
 	ft_print_move(move);
 }

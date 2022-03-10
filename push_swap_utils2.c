@@ -5,70 +5,87 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: mmoumni <mmoumni@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/07 21:17:23 by mmoumni           #+#    #+#             */
-/*   Updated: 2022/03/09 19:13:05 by mmoumni          ###   ########.fr       */
+/*   Created: 2022/03/09 13:37:31 by mmoumni           #+#    #+#             */
+/*   Updated: 2022/03/10 21:29:02 by mmoumni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-// int min_stack(t_stack *stack, int size)
-// {
-//     t_stack *tmp_stack;
-//     int      min;
-//     int     count;
-//     int     min_pos;
-
-//     count = 0;
-//     min_pos = 1;
-//     min = stack->number;
-//     tmp_stack = stack->next;;
-//     while (min_pos < size)
-//     {
-//         min_pos++;
-//         if (tmp_stack->number <= min)
-//         {
-//             min = tmp_stack->number;
-//             count = min_pos;
-//         }
-//         tmp_stack = tmp_stack->next;
-//     }
-//     return (count);
-// }
-
-// t_stack	*min_elem(t_stack *stack, int size)
+// void	print_stack(t_stack *stack)
 // {
 // 	t_stack	*tmp_stack;
-// 	t_stack	*minimum;
-// 	int		i;
 
 // 	tmp_stack = stack;
-// 	minimum = stack;
-// 	while (tmp_stack)
+// 	while (tmp_stack != NULL)
 // 	{
-// 		if (tmp_stack->number <= minimum->number)
-// 			minimum = tmp_stack;
+// 		// printf("%d\n", tmp_stack->number);
+// 		printf("elem[%d] index[%d] lis[%d] lis_len[%d] prev[%d] dis[%d]\n", tmp_stack->number, tmp_stack->index, tmp_stack->lis, tmp_stack->lis_len, tmp_stack->prev, tmp_stack->dis);
 // 		tmp_stack = tmp_stack->next;
-//     }
-// 	return (minimum);
+// 	}
 // }
 
-int max_stack(t_stack *stack, int size)
+void	min_in_top(t_stack **stack, t_info *info)
 {
-    t_stack *tmp_stack;
-    int     max;
+	t_stack	*tmp_stack;
+	int		min;
+	int		middle;
 
-    max = 0;
-    tmp_stack = stack;
-    while (tmp_stack)
-    {
-        if (max < tmp_stack->number)
-        {
-            max = tmp_stack->index;
-        }
-        tmp_stack = tmp_stack->next;
-    }
-    return (max);
+	tmp_stack = min_elem(*stack, info->size_a, info);
+	min = tmp_stack->index;
+	middle = info->size_a / 2;
+	if (min > middle)
+	{
+		min = info->size_a - (tmp_stack->index + 1) + 1;
+		while (min--)
+			ft_reverse_rotate(stack, "rra\n", info);
+	}
+	else
+	{
+		while (min--)
+			ft_rotate(stack, "ra\n", info);
+	}
 }
 
+t_stack	*min_elem(t_stack *stack, int size, t_info *info)
+{
+	t_stack	*tmp_stack;
+	t_stack	*minimum;
+	int		min;
 
+	min = info->size_a + info->size_b;
+	tmp_stack = stack;
+	minimum = stack;
+	while (tmp_stack)
+	{
+		if (tmp_stack->number < min)
+		{
+			minimum = tmp_stack;
+			min = tmp_stack->number;
+		}
+		tmp_stack = tmp_stack->next;
+	}
+	return (minimum);
+}
+
+int	ft_min(int value1, int value2)
+{
+	if (value1 > value2)
+		return (value2);
+	return (value1);
+}
+
+void	index_stack(t_stack **stack, t_info *info)
+{
+	t_stack	*tmp_stack;
+	int		i;
+
+	i = 0;
+	tmp_stack = *stack;
+	while (tmp_stack)
+	{
+		tmp_stack->index = i;
+		tmp_stack = tmp_stack->next;
+		i++;
+	}
+}
