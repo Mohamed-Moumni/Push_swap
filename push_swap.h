@@ -6,7 +6,7 @@
 /*   By: mmoumni <mmoumni@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/07 21:17:27 by mmoumni           #+#    #+#             */
-/*   Updated: 2022/03/10 21:40:55 by mmoumni          ###   ########.fr       */
+/*   Updated: 2022/03/11 20:01:47 by mmoumni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ int		ft_atoi(char *number);
 int		ft_max(int a, int b);
 void	print_stack(t_stack *stack);
 void	a_to_b(t_stack **stack_a, t_stack **stack_b, t_info *info);
-t_stack	*min_elem(t_stack *stack, int size, t_info *info);
+t_stack	*min_elem(t_stack *stack, t_info *info);
 int		ft_min(int value1, int value2);
 void	index_stack(t_stack **stack, t_info *info);
 void	elem_pos(t_stack **stack_a, t_stack *elem, t_info *info);
@@ -83,5 +83,9 @@ void	b_to_a(t_stack **stack_a, t_stack **stack_b, t_info *info);
 void	min_in_top(t_stack **stack, t_info *info);
 int		calcul_moves(t_stack *b_elem, t_info *info);
 void	rrr_move(t_stack **s_a, t_stack **s_b, t_stack *b_elem, t_info *info);
+void	ft_sort_three(t_stack **stack, t_info *info);
+void	sort_three_a(t_stack **stack, t_info *info);
+void	sort_three_b(t_stack **stack, t_info *info);
+void	ft_sort_under_five(t_stack **s_a, t_stack **s_b, t_info *info);
 
 #endif
