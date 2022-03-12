@@ -6,7 +6,7 @@
 /*   By: mmoumni <mmoumni@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/12 17:04:11 by mmoumni           #+#    #+#             */
-/*   Updated: 2022/03/12 18:55:44 by mmoumni          ###   ########.fr       */
+/*   Updated: 2022/03/12 19:59:32 by mmoumni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,4 +109,13 @@ char	*get_next_line(int fd);
 char	*ft_strdup(char *str);
 char	*ft_strchr(char *s, int c);
 char	*ft_strjoin(char *s1, char *s2);
+
+/* BOUNUS FILES*/
+int		three_len_move(char *move);
+int		four_len_move(char *move);
+int		check_valid_move(char *move);
+void	perform_move(t_stack **s_a, t_stack **s_b, int move, t_info *info);
+void	check_moves(t_stack **stack_a, t_stack **stack_b, t_info *info, int fd);
+
+
 #endif
