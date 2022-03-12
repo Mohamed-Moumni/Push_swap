@@ -6,7 +6,7 @@
 /*   By: mmoumni <mmoumni@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/07 21:17:37 by mmoumni           #+#    #+#             */
-/*   Updated: 2022/03/10 21:03:59 by mmoumni          ###   ########.fr       */
+/*   Updated: 2022/03/12 18:14:43 by mmoumni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int	is_empty(t_stack *s)
 		return (0);
 }
 
-void	push(t_stack **s, int value, t_info *info)
+void	push(t_stack **s, int value)
 {
 	t_stack	*new_node;
 
@@ -37,7 +37,7 @@ void	push(t_stack **s, int value, t_info *info)
 	*s = new_node;
 }
 
-int	pop(t_stack **s, int *value, t_info *info)
+int	pop(t_stack **s, int *value)
 {
 	t_stack	*tmp;
 
@@ -50,11 +50,11 @@ int	pop(t_stack **s, int *value, t_info *info)
 	return (0);
 }
 
-int	fill_stack(t_stack **s, char *arg, t_info *info)
+int	fill_stack(t_stack **s, char *arg)
 {
 	int	value;
 
 	value = ft_atoi(arg);
-	push(s, value, info);
+	push(s, value);
 	return (value);
 }

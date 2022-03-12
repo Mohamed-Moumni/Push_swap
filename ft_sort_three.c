@@ -6,7 +6,7 @@
 /*   By: mmoumni <mmoumni@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/07 21:16:49 by mmoumni           #+#    #+#             */
-/*   Updated: 2022/03/11 20:28:12 by mmoumni          ###   ########.fr       */
+/*   Updated: 2022/03/12 18:11:48 by mmoumni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,22 @@
 
 void	ft_sort_three(t_stack **stack, t_info *info)
 {
-	t_stack	*tmp_curr;
-	t_stack	*tmp_next;
+	t_stack	*max_stack;
+	t_stack	*min_stack;
 
-	tmp_curr = *stack;
-	tmp_next = (*stack)->next;
-	sort_three_a(stack, info);
-	sort_three_b(stack, info);
+	max_stack = max_of_stack(*stack);
+	min_stack = min_elem(*stack);
+	if (!stack_is_sorted(*stack))
+		return ;
+	if (max_stack->index == 1)
+		sort_three_a(stack, info);
+	else if (min_stack->index == 1)
+		sort_three_b(stack, info);
+	else
+	{
+		ft_rotate(stack, "ra\n");
+		ft_swap(stack, "sa\n", info);
+	}
 }
 
 void	sort_three_a(t_stack **stack, t_info *info)
@@ -30,16 +39,13 @@ void	sort_three_a(t_stack **stack, t_info *info)
 
 	tmp_curr = *stack;
 	tmp_next = (*stack)->next;
-	if (tmp_curr->number < tmp_next->number)
+	if (tmp_curr->number < tmp_next->next->number)
 	{
-		if (tmp_next->next->number > tmp_curr->number)
-		{
-			ft_reverse_rotate(stack, "rra\n", info);
-			ft_swap(stack, "sa\n", info);
-		}
-		else
-			ft_reverse_rotate(stack, "rra\n", info);
+		ft_reverse_rotate(stack, "rra\n", info);
+		ft_swap(stack, "sa\n", info);
 	}
+	else
+		ft_reverse_rotate(stack, "rra\n", info);
 }
 
 void	sort_three_b(t_stack **stack, t_info *info)
@@ -49,17 +55,8 @@ void	sort_three_b(t_stack **stack, t_info *info)
 
 	tmp_curr = *stack;
 	tmp_next = (*stack)->next;
-	if (tmp_next->number < tmp_curr->number
-		&& tmp_next->number < tmp_next->next->number)
-	{
-		if (tmp_curr->number < tmp_next->next->number)
-			ft_swap(stack, "sa\n", info);
-		else
-			ft_rotate(stack, "ra\n", info);
-	}
-	else
-	{
+	if (tmp_curr->number < tmp_next->next->number)
 		ft_swap(stack, "sa\n", info);
-		ft_reverse_rotate(stack, "rra\n", info);
-	}
+	else
+		ft_rotate(stack, "ra\n");
 }

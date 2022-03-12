@@ -6,7 +6,7 @@
 /*   By: mmoumni <mmoumni@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/07 21:16:56 by mmoumni           #+#    #+#             */
-/*   Updated: 2022/03/10 13:08:23 by mmoumni          ###   ########.fr       */
+/*   Updated: 2022/03/12 17:00:32 by mmoumni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,6 @@ void	get_lis(t_stack **stack)
 {
 	t_stack	*tmp_stack;
 	int		index;
-	int		max;
 
 	tmp_stack = max_of_length(stack);
 	tmp_stack->lis = 1;

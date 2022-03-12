@@ -6,7 +6,7 @@
 /*   By: mmoumni <mmoumni@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/09 13:37:31 by mmoumni           #+#    #+#             */
-/*   Updated: 2022/03/11 19:50:05 by mmoumni          ###   ########.fr       */
+/*   Updated: 2022/03/12 18:13:45 by mmoumni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,33 +14,28 @@
 
 void	min_in_top(t_stack **stack, t_info *info)
 {
-	t_stack	*tmp_stack;
+	t_stack	*min_number;
 	int		min;
 	int		middle;
 
-	tmp_stack = min_elem(*stack, info);
-	min = tmp_stack->index;
+	min_number = min_elem(*stack);
+	min = min_number->index;
 	middle = info->size_a / 2;
 	if (min > middle)
-	{
-		min = info->size_a - (tmp_stack->index + 1) + 1;
-		while (min--)
+		while ((*stack)->number != min_number->number)
 			ft_reverse_rotate(stack, "rra\n", info);
-	}
 	else
-	{
-		while (min--)
-			ft_rotate(stack, "ra\n", info);
-	}
+		while ((*stack)->number != min_number->number)
+			ft_rotate(stack, "ra\n");
 }
 
-t_stack	*min_elem(t_stack *stack, t_info *info)
+t_stack	*min_elem(t_stack *stack)
 {
 	t_stack	*tmp_stack;
 	t_stack	*minimum;
 	int		min;
 
-	min = info->size_a + info->size_b;
+	min = max_of_stack(stack)->number;
 	tmp_stack = stack;
 	minimum = stack;
 	while (tmp_stack)
@@ -62,7 +57,7 @@ int	ft_min(int value1, int value2)
 	return (value1);
 }
 
-void	index_stack(t_stack **stack, t_info *info)
+void	index_stack(t_stack **stack)
 {
 	t_stack	*tmp_stack;
 	int		i;

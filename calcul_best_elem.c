@@ -6,7 +6,7 @@
 /*   By: mmoumni <mmoumni@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/07 21:17:33 by mmoumni           #+#    #+#             */
-/*   Updated: 2022/03/10 21:24:58 by mmoumni          ###   ########.fr       */
+/*   Updated: 2022/03/12 18:13:00 by mmoumni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,12 +58,11 @@ int	calcul_moves(t_stack *b_elem, t_info *info)
 void	marking_best_elem(t_stack **stack_a, t_stack **stack_b, t_info *info)
 {
 	t_stack	*tmp_stack;
-	int		move;
 
 	tmp_stack = *stack_b;
 	while (tmp_stack)
 	{
-		elem_pos(stack_a, tmp_stack, info);
+		elem_pos(stack_a, tmp_stack);
 		calculate_best_elem(tmp_stack, info);
 		tmp_stack = tmp_stack->next;
 	}
@@ -96,12 +95,12 @@ void	b_to_a(t_stack **stack_a, t_stack **stack_b, t_info *info)
 	tmp_stack = NULL;
 	while ((*stack_b))
 	{
-		index_stack(stack_a, info);
-		index_stack(stack_b, info);
+		index_stack(stack_a);
+		index_stack(stack_b);
 		marking_best_elem(stack_a, stack_b, info);
 		tmp_stack = min_move(stack_b, info);
 		mv_to_top(stack_a, stack_b, tmp_stack, info);
-		ft_push(stack_b, stack_a, "pa\n", info);
+		ft_push(stack_b, stack_a, "pa\n");
 		info->size_a += 1;
 		info->size_b -= 1;
 	}
