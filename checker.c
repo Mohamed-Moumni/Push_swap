@@ -6,12 +6,11 @@
 /*   By: mmoumni <mmoumni@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/12 18:58:20 by mmoumni           #+#    #+#             */
-/*   Updated: 2022/03/12 19:56:06 by mmoumni          ###   ########.fr       */
+/*   Updated: 2022/03/13 11:57:50 by mmoumni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
 
 int	three_len_move(char *move)
 {
@@ -76,16 +75,17 @@ void	perform_move(t_stack **s_a, t_stack **s_b, int move, t_info *info)
 	else if (move == 3)
 		ft_swap(s_b, "", info);
 	else if (move == 4)
-		ft_rr(s_a, s_a, "");
+		ft_rr(s_a, s_b, "");
 	else if (move == 5)
 		ft_push(s_b, s_a, "");
 	else if (move == 6)
 		ft_push(s_a, s_b, "");
 	else if (move == 7)
-		ft_rrr(s_a, s_a, "", info);
+		ft_rrr(s_a, s_b, "", info);
 	else if (move == 8)
 		ft_reverse_rotate(s_a, "", info);
-	ft_reverse_rotate(s_b, "", info);
+	else
+		ft_reverse_rotate(s_b, "", info);
 }
 
 void	check_moves(t_stack **stack_a, t_stack **stack_b, t_info *info, int fd)
@@ -96,7 +96,7 @@ void	check_moves(t_stack **stack_a, t_stack **stack_b, t_info *info, int fd)
 
 	check = 0;
 	move = get_next_line(fd);
-	while (move != NULL || move[0] != '\n')
+	while (move != NULL && move[0] != '\n')
 	{
 		check = 1;
 		move_type = check_valid_move(move);
@@ -111,8 +111,6 @@ void	check_moves(t_stack **stack_a, t_stack **stack_b, t_info *info, int fd)
 		move = get_next_line(0);
 	}
 	free(move);
-	if (check == 0)
-		exit(0);
 }
 
 int	main(int ac, char **av)
@@ -136,7 +134,7 @@ int	main(int ac, char **av)
 		stack_init(&stack_a, &stack_b, &info);
 		check_arguments(ac, av);
 		get_stack(&stack_a, av, info, ac);
-		check_moves(&stack_a, &stack_a, info, 0);
+		check_moves(&stack_a, &stack_b, info, 0);
 		if (stack_is_sorted(stack_a))
 			write(1, "KO\n", 3);
 		else

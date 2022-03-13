@@ -2,6 +2,7 @@ NAME = push_swap
 
 CC_FLAGS = -Wall -Wextra -Werror
 
+
 HEADER = push_swap.h
 
 CC = cc
@@ -31,9 +32,9 @@ $(NAME): $(OBG) $(HEADER)
 bonus : $(OBG_BONUS) $(HEADER)
 	$(CC) $(CC_FLAGS) $(OBG_BONUS) -o $(CHECKER)
 clean:
-	rm -rf $(OBG)
+	rm -rf $(OBG) $(OBG_BONUS)
 
 fclean: clean
-	rm -rf $(NAME)
+	rm -rf $(NAME) $(CHECKER)
 
 re: fclean all
