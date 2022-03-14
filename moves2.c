@@ -6,16 +6,16 @@
 /*   By: mmoumni <mmoumni@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/07 21:17:03 by mmoumni           #+#    #+#             */
-/*   Updated: 2022/03/13 11:54:23 by mmoumni          ###   ########.fr       */
+/*   Updated: 2022/03/14 10:16:43 by mmoumni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include"push_swap.h"
 
-void	ft_rr(t_stack **stack_a, t_stack **stack_b, char *move)
+void	ft_rr(t_stack **stack_a, t_stack **stack_b, char *move, t_info *info)
 {
-	ft_rotate(stack_a, "");
-	ft_rotate(stack_b, "");
+	ft_rotate(stack_a, "", info);
+	ft_rotate(stack_b, "", info);
 	ft_print_move(move);
 }
 
@@ -26,8 +26,14 @@ void	ft_reverse_rotate(t_stack **stack, char *move, t_info *info)
 	t_stack	*old_head;
 	t_stack	*new_head;
 
-	if (info->size_a < 2)
-		return ;
+	if ((*stack)->prev == -2)
+	{
+		if (info->size_a < 2)
+			return ;
+	}
+	else if ((*stack)->prev == -3)
+		if (info->size_b < 2)
+			return ;
 	before_last = (*stack);
 	old_head = *stack;
 	while ((before_last)->next->next != NULL)
@@ -42,6 +48,8 @@ void	ft_reverse_rotate(t_stack **stack, char *move, t_info *info)
 
 void	ft_rrr(t_stack **stack_a, t_stack **stack_b, char *move, t_info *info)
 {
+	index_stack(stack_a, -2);
+	index_stack(stack_b, -3);
 	ft_reverse_rotate(stack_a, "", info);
 	ft_reverse_rotate(stack_b, "", info);
 	ft_print_move(move);

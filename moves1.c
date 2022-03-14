@@ -6,7 +6,7 @@
 /*   By: mmoumni <mmoumni@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/07 21:17:00 by mmoumni           #+#    #+#             */
-/*   Updated: 2022/03/13 11:55:44 by mmoumni          ###   ########.fr       */
+/*   Updated: 2022/03/14 10:21:09 by mmoumni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,14 @@ void	ft_swap(t_stack **stack, char *move, t_info *info)
 	int	tmp;
 	int	tmp_next;
 
-	(void) info;
+	if ((*stack)->prev == -2)
+	{
+		if (info->size_a < 2)
+			return ;
+	}
+	else if ((*stack)->prev == -3)
+		if (info->size_b < 2)
+			return ;
 	tmp = (*stack)->number;
 	tmp_next = (*stack)->next->number;
 	(*stack)->next->number = tmp;
@@ -56,12 +63,20 @@ t_stack	*ft_last_elem(t_stack *stack)
 	return (tmp);
 }
 
-void	ft_rotate(t_stack **stack, char *move)
+void	ft_rotate(t_stack **stack, char *move, t_info *info)
 {
 	int		poped_elem;
 	t_stack	*bottom_stack;
 	t_stack	*node;
 
+	if ((*stack)->prev == -2)
+	{
+		if (info->size_a < 2)
+			return ;
+	}
+	else if ((*stack)->prev == -3)
+		if (info->size_b < 2)
+			return ;
 	poped_elem = 0;
 	pop(stack, &poped_elem);
 	bottom_stack = ft_last_elem(*stack);

@@ -6,7 +6,7 @@
 /*   By: mmoumni <mmoumni@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/12 17:04:11 by mmoumni           #+#    #+#             */
-/*   Updated: 2022/03/12 19:59:32 by mmoumni          ###   ########.fr       */
+/*   Updated: 2022/03/14 10:19:22 by mmoumni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,6 @@
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 1
 # endif
-
 
 typedef struct s_info
 {
@@ -71,16 +70,18 @@ t_stack	*max_of_length(t_stack **stack);
 t_stack	*find_elem_by_index(t_stack **stack, int index);
 void	get_lis(t_stack **stack);
 void	find_lis(t_stack **stack);
+void	check_valid_numbers(int ac, char **av);
+int		check_space(char *string);
+char	*check_arguments(int ac, char **av);
 void	stack_init(t_stack **stack_a, t_stack **stack_b, t_info **info);
-void	check_arguments(int ac, char **av);
 void	get_stack(t_stack **stack_a, char **av, t_info *info, int ac);
 void	sort_stack(t_stack **stack_a, t_stack **stack_b, t_info *info);
 void	ft_swap(t_stack **stack, char *move, t_info *info);
 void	ft_ss(t_stack **stack_a, t_stack **stack_b, char *move, t_info *info);
 void	ft_push(t_stack **stack_a, t_stack **stack_b, char *move);
 t_stack	*ft_last_elem(t_stack *stack);
-void	ft_rotate(t_stack **stack, char *move);
-void	ft_rr(t_stack **stack_a, t_stack **stack_b, char *move);
+void	ft_rotate(t_stack **stack, char *move, t_info *info);
+void	ft_rr(t_stack **stack_a, t_stack **stack_b, char *move, t_info *info);
 void	ft_reverse_rotate(t_stack **stack, char *move, t_info *info);
 void	ft_rrr(t_stack **stack_a, t_stack **stack_b, char *move, t_info *info);
 void	ft_print_move(char *move);
@@ -98,24 +99,21 @@ int		stack_is_sorted(t_stack *stack);
 void	min_in_top(t_stack **stack, t_info *info);
 t_stack	*min_elem(t_stack *stack);
 int		ft_min(int value1, int value2);
-void	index_stack(t_stack **stack);
+void	index_stack(t_stack **stack, int indice);
 t_stack	*initialiser(void);
 int		is_empty(t_stack *s);
 void	push(t_stack **s, int value);
 int		pop(t_stack **s, int *value);
 int		fill_stack(t_stack **s, char *arg);
-
 char	*get_next_line(int fd);
 char	*ft_strdup(char *str);
 char	*ft_strchr(char *s, int c);
 char	*ft_strjoin(char *s1, char *s2);
-
 /* BOUNUS FILES*/
 int		three_len_move(char *move);
 int		four_len_move(char *move);
 int		check_valid_move(char *move);
 void	perform_move(t_stack **s_a, t_stack **s_b, int move, t_info *info);
 void	check_moves(t_stack **stack_a, t_stack **stack_b, t_info *info, int fd);
-
-
+char	*join_arg(char *s1, char *s2, int a);
 #endif

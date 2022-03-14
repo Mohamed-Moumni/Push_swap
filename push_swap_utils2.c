@@ -6,7 +6,7 @@
 /*   By: mmoumni <mmoumni@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/09 13:37:31 by mmoumni           #+#    #+#             */
-/*   Updated: 2022/03/12 18:13:45 by mmoumni          ###   ########.fr       */
+/*   Updated: 2022/03/14 09:29:45 by mmoumni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	min_in_top(t_stack **stack, t_info *info)
 			ft_reverse_rotate(stack, "rra\n", info);
 	else
 		while ((*stack)->number != min_number->number)
-			ft_rotate(stack, "ra\n");
+			ft_rotate(stack, "ra\n", info);
 }
 
 t_stack	*min_elem(t_stack *stack)
@@ -57,7 +57,7 @@ int	ft_min(int value1, int value2)
 	return (value1);
 }
 
-void	index_stack(t_stack **stack)
+void	index_stack(t_stack **stack, int indice)
 {
 	t_stack	*tmp_stack;
 	int		i;
@@ -67,6 +67,7 @@ void	index_stack(t_stack **stack)
 	while (tmp_stack)
 	{
 		tmp_stack->index = i;
+		tmp_stack->prev = indice;
 		tmp_stack = tmp_stack->next;
 		i++;
 	}

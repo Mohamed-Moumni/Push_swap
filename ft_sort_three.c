@@ -6,7 +6,7 @@
 /*   By: mmoumni <mmoumni@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/07 21:16:49 by mmoumni           #+#    #+#             */
-/*   Updated: 2022/03/12 18:11:48 by mmoumni          ###   ########.fr       */
+/*   Updated: 2022/03/13 17:38:03 by mmoumni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	ft_sort_three(t_stack **stack, t_info *info)
 		sort_three_b(stack, info);
 	else
 	{
-		ft_rotate(stack, "ra\n");
+		ft_rotate(stack, "ra\n", info);
 		ft_swap(stack, "sa\n", info);
 	}
 }
@@ -58,5 +58,5 @@ void	sort_three_b(t_stack **stack, t_info *info)
 	if (tmp_curr->number < tmp_next->next->number)
 		ft_swap(stack, "sa\n", info);
 	else
-		ft_rotate(stack, "ra\n");
+		ft_rotate(stack, "ra\n", info);
 }
