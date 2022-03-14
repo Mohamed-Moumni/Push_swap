@@ -6,7 +6,7 @@
 /*   By: mmoumni <mmoumni@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/07 21:17:03 by mmoumni           #+#    #+#             */
-/*   Updated: 2022/03/14 10:16:43 by mmoumni          ###   ########.fr       */
+/*   Updated: 2022/03/14 19:34:17 by mmoumni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 
 void	ft_rr(t_stack **stack_a, t_stack **stack_b, char *move, t_info *info)
 {
+	index_stack(stack_a, -2);
+	index_stack(stack_b, -3);
 	ft_rotate(stack_a, "", info);
 	ft_rotate(stack_b, "", info);
 	ft_print_move(move);

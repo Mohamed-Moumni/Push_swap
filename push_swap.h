@@ -6,7 +6,7 @@
 /*   By: mmoumni <mmoumni@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/12 17:04:11 by mmoumni           #+#    #+#             */
-/*   Updated: 2022/03/14 10:19:22 by mmoumni          ###   ########.fr       */
+/*   Updated: 2022/03/14 19:43:10 by mmoumni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@
 # define MIN_INT -2147483648
 # define MAX "2147483647"
 # define MIN "2147483648"
+
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 1
 # endif
@@ -114,6 +115,7 @@ int		three_len_move(char *move);
 int		four_len_move(char *move);
 int		check_valid_move(char *move);
 void	perform_move(t_stack **s_a, t_stack **s_b, int move, t_info *info);
+void	perform_move_two(t_stack **s_a, t_stack **s_b, int move, t_info *info);
 void	check_moves(t_stack **stack_a, t_stack **stack_b, t_info *info, int fd);
 char	*join_arg(char *s1, char *s2, int a);
 #endif

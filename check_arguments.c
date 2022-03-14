@@ -6,7 +6,7 @@
 /*   By: mmoumni <mmoumni@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/12 13:20:01 by mmoumni           #+#    #+#             */
-/*   Updated: 2022/03/14 09:44:06 by mmoumni          ###   ########.fr       */
+/*   Updated: 2022/03/14 20:21:29 by mmoumni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,10 @@ void	check_valid_numbers(int ac, char **av)
 {
 	int	i;
 
-	i = ac - 2;
+	ac = 0;
+	while (av[ac])
+		ac++;
+	i = ac - 1;
 	while (i >= 0)
 	{
 		if (check_number(av[i]) == 1)
