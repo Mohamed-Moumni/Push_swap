@@ -6,7 +6,7 @@
 /*   By: mmoumni <mmoumni@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/27 13:04:26 by mmoumni           #+#    #+#             */
-/*   Updated: 2022/03/14 20:25:37 by mmoumni          ###   ########.fr       */
+/*   Updated: 2022/03/15 21:20:50 by mmoumni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ int	is_integer(char *num)
 		if (ft_strcmp(&num[plus], MIN) > 0)
 			return (1);
 		else
-			if (ft_strcmp(&num[plus], MAX) > 0)
+			if (ft_strcmp(&num[plus], MAX) < 0)
 				return (1);
 	}
 	return (0);

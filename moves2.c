@@ -6,7 +6,7 @@
 /*   By: mmoumni <mmoumni@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/07 21:17:03 by mmoumni           #+#    #+#             */
-/*   Updated: 2022/03/14 19:34:17 by mmoumni          ###   ########.fr       */
+/*   Updated: 2022/03/15 22:07:32 by mmoumni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,6 @@
 
 void	ft_rr(t_stack **stack_a, t_stack **stack_b, char *move, t_info *info)
 {
-	index_stack(stack_a, -2);
-	index_stack(stack_b, -3);
 	ft_rotate(stack_a, "", info);
 	ft_rotate(stack_b, "", info);
 	ft_print_move(move);
@@ -28,14 +26,9 @@ void	ft_reverse_rotate(t_stack **stack, char *move, t_info *info)
 	t_stack	*old_head;
 	t_stack	*new_head;
 
-	if ((*stack)->prev == -2)
-	{
-		if (info->size_a < 2)
-			return ;
-	}
-	else if ((*stack)->prev == -3)
-		if (info->size_b < 2)
-			return ;
+	(void) info;
+	if ((*stack) == NULL || ft_count_elem(*stack) < 1)
+		return ;
 	before_last = (*stack);
 	old_head = *stack;
 	while ((before_last)->next->next != NULL)
@@ -50,8 +43,6 @@ void	ft_reverse_rotate(t_stack **stack, char *move, t_info *info)
 
 void	ft_rrr(t_stack **stack_a, t_stack **stack_b, char *move, t_info *info)
 {
-	index_stack(stack_a, -2);
-	index_stack(stack_b, -3);
 	ft_reverse_rotate(stack_a, "", info);
 	ft_reverse_rotate(stack_b, "", info);
 	ft_print_move(move);

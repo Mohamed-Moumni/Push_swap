@@ -6,7 +6,7 @@
 /*   By: mmoumni <mmoumni@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/12 17:04:11 by mmoumni           #+#    #+#             */
-/*   Updated: 2022/03/14 19:43:10 by mmoumni          ###   ########.fr       */
+/*   Updated: 2022/03/15 22:05:09 by mmoumni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,7 +100,7 @@ int		stack_is_sorted(t_stack *stack);
 void	min_in_top(t_stack **stack, t_info *info);
 t_stack	*min_elem(t_stack *stack);
 int		ft_min(int value1, int value2);
-void	index_stack(t_stack **stack, int indice);
+void	index_stack(t_stack **stack);
 t_stack	*initialiser(void);
 int		is_empty(t_stack *s);
 void	push(t_stack **s, int value);
@@ -110,7 +110,6 @@ char	*get_next_line(int fd);
 char	*ft_strdup(char *str);
 char	*ft_strchr(char *s, int c);
 char	*ft_strjoin(char *s1, char *s2);
-/* BOUNUS FILES*/
 int		three_len_move(char *move);
 int		four_len_move(char *move);
 int		check_valid_move(char *move);
@@ -118,4 +117,5 @@ void	perform_move(t_stack **s_a, t_stack **s_b, int move, t_info *info);
 void	perform_move_two(t_stack **s_a, t_stack **s_b, int move, t_info *info);
 void	check_moves(t_stack **stack_a, t_stack **stack_b, t_info *info, int fd);
 char	*join_arg(char *s1, char *s2, int a);
+int		ft_count_elem(t_stack *stack);
 #endif

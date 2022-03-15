@@ -6,7 +6,7 @@
 /*   By: mmoumni <mmoumni@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/07 21:17:19 by mmoumni           #+#    #+#             */
-/*   Updated: 2022/03/14 15:48:32 by mmoumni          ###   ########.fr       */
+/*   Updated: 2022/03/15 20:58:43 by mmoumni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,7 @@ int	stack_is_sorted(t_stack *stack)
 		length++;
 		tmp_stack = tmp_stack->next;
 	}
-	if (length == 0 || length == 1)
+	if (length == 0)
 		return (1);
 	return (0);
 }

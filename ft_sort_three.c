@@ -6,7 +6,7 @@
 /*   By: mmoumni <mmoumni@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/07 21:16:49 by mmoumni           #+#    #+#             */
-/*   Updated: 2022/03/13 17:38:03 by mmoumni          ###   ########.fr       */
+/*   Updated: 2022/03/15 22:33:34 by mmoumni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ void	ft_sort_three(t_stack **stack, t_info *info)
 	t_stack	*max_stack;
 	t_stack	*min_stack;
 
+	index_stack(stack);
 	max_stack = max_of_stack(*stack);
 	min_stack = min_elem(*stack);
 	if (!stack_is_sorted(*stack))

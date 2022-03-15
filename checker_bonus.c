@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   checker.c                                          :+:      :+:    :+:   */
+/*   checker_bonus.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mmoumni <mmoumni@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/12 18:58:20 by mmoumni           #+#    #+#             */
-/*   Updated: 2022/03/14 20:26:41 by mmoumni          ###   ########.fr       */
+/*   Updated: 2022/03/15 20:38:49 by mmoumni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,20 +58,20 @@ void	check_moves(t_stack **stack_a, t_stack **stack_b, t_info *info, int fd)
 	int		move_type;
 	int		check;
 
-	if (stack_is_sorted(*stack_a) == 0)
-		return ;
 	check = 0;
 	move = get_next_line(fd);
-	while (move != NULL && move[0] != '\n')
+	while (move != NULL)
 	{
 		check = 1;
 		move_type = check_valid_move(move);
-		if (move_type != -1)
-			perform_move(stack_a, stack_b, move_type, info);
-		else
+		if (move_type == -1)
 		{
 			free(move);
 			ft_error();
+		}
+		else
+		{
+			perform_move(stack_a, stack_b, move_type, info);
 		}
 		free(move);
 		move = get_next_line(0);
@@ -95,7 +95,7 @@ int	main(int ac, char **av)
 		check_valid_numbers(ac, argv);
 		get_stack(&stack_a, argv, info, ac);
 		check_moves(&stack_a, &stack_b, info, 0);
-		if (stack_is_sorted(stack_a) && !stack_b)
+		if (stack_b || stack_is_sorted(stack_a))
 			write(1, "KO\n", 3);
 		else
 			write(1, "OK\n", 3);

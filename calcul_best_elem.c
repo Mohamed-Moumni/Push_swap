@@ -6,7 +6,7 @@
 /*   By: mmoumni <mmoumni@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/07 21:17:33 by mmoumni           #+#    #+#             */
-/*   Updated: 2022/03/14 09:33:41 by mmoumni          ###   ########.fr       */
+/*   Updated: 2022/03/15 20:34:08 by mmoumni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,8 +95,8 @@ void	b_to_a(t_stack **stack_a, t_stack **stack_b, t_info *info)
 	tmp_stack = NULL;
 	while ((*stack_b))
 	{
-		index_stack(stack_a, -2);
-		index_stack(stack_b, -3);
+		index_stack(stack_a);
+		index_stack(stack_b);
 		marking_best_elem(stack_a, stack_b, info);
 		tmp_stack = min_move(stack_b, info);
 		mv_to_top(stack_a, stack_b, tmp_stack, info);

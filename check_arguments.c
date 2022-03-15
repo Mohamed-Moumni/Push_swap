@@ -6,7 +6,7 @@
 /*   By: mmoumni <mmoumni@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/12 13:20:01 by mmoumni           #+#    #+#             */
-/*   Updated: 2022/03/14 20:21:29 by mmoumni          ###   ########.fr       */
+/*   Updated: 2022/03/15 22:38:35 by mmoumni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,8 +46,9 @@ t_stack	*max_of_stack(t_stack *stack)
 	t_stack	*max_stack;
 	int		max;
 
-	max = 0;
 	tmp_stack = stack;
+	max = tmp_stack->number;
+	max_stack = tmp_stack;
 	while (tmp_stack)
 	{
 		if (tmp_stack->number > max)
@@ -85,7 +86,7 @@ void	get_stack(t_stack **stack_a, char **av, t_info *info, int ac)
 	ac = 0;
 	while (av[ac])
 		ac++;
-	j = 0;
+	j = ac - 1;
 	i = ac - 1;
 	while (i >= 0)
 	{
@@ -98,6 +99,7 @@ void	get_stack(t_stack **stack_a, char **av, t_info *info, int ac)
 		(*stack_a)->lis_len = 1;
 		(*stack_a)->prev = -1;
 		(*stack_a)->index = j;
+		(*stack_a)->lis = 0;
 		info->size_a += 1;
 		j--;
 		i--;

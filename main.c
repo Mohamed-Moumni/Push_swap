@@ -6,7 +6,7 @@
 /*   By: mmoumni <mmoumni@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/07 19:27:35 by mmoumni           #+#    #+#             */
-/*   Updated: 2022/03/14 20:21:22 by mmoumni          ###   ########.fr       */
+/*   Updated: 2022/03/15 22:43:28 by mmoumni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,10 +45,8 @@ void	sort_stack(t_stack **stack_a, t_stack **stack_b, t_info *info)
 	find_lis(stack_a);
 	get_lis(stack_a);
 	a_to_b(stack_a, stack_b, info);
-	index_stack(stack_a, -2);
-	index_stack(stack_b, -3);
 	b_to_a(stack_a, stack_b, info);
-	index_stack(stack_a, -2);
+	index_stack(stack_a);
 	min_in_top(stack_a, info);
 }
 

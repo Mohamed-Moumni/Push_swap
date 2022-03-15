@@ -6,7 +6,7 @@
 /*   By: mmoumni <mmoumni@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/07 21:16:43 by mmoumni           #+#    #+#             */
-/*   Updated: 2022/03/14 09:34:28 by mmoumni          ###   ########.fr       */
+/*   Updated: 2022/03/15 20:34:48 by mmoumni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	ft_sort_under_five(t_stack **s_a, t_stack **s_b, t_info *info)
 		ft_push(s_a, s_b, "pb\n");
 		info->size_a -= 1;
 		info->size_b += 1;
-		index_stack(s_a, -2);
+		index_stack(s_a);
 		ft_sort_three(s_a, info);
 		ft_push(s_b, s_a, "pa\n");
 		info->size_b -= 1;
@@ -44,13 +44,13 @@ void	sort_five(t_stack **s_a, t_stack **s_b, t_info *info)
 	ft_push(s_a, s_b, "pb\n");
 	info->size_a -= 1;
 	info->size_b += 1;
-	index_stack(s_a, -2);
-	index_stack(s_b, -3);
+	index_stack(s_a);
+	index_stack(s_b);
 	min_in_top(s_a, info);
 	ft_push(s_a, s_b, "pb\n");
 	info->size_a -= 1;
 	info->size_b += 1;
-	index_stack(s_a, -2);
+	index_stack(s_a);
 	ft_sort_three(s_a, info);
 	ft_push(s_b, s_a, "pa\n");
 	info->size_a += 1;
